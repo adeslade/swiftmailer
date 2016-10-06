@@ -13,7 +13,8 @@ class Swift_Bug650Test extends \PHPUnit_Framework_TestCase
         $factory = new Swift_CharacterReaderFactory_SimpleCharacterReaderFactory();
         $charStream = new Swift_CharacterStream_NgCharacterStream($factory, 'utf-8');
         $encoder = new Swift_Mime_HeaderEncoder_QpHeaderEncoder($charStream);
-        $header = new Swift_Mime_Headers_MailboxHeader('To', $encoder, new Swift_Mime_Grammar());
+        $validator = new Egulias\EmailValidator\EmailValidator;
+        $header = new Swift_Mime_Headers_MailboxHeader('To', $encoder, new Swift_Mime_Grammar(), $validator);
         $header->setCharset('utf-8');
 
         $header->setNameAddresses(array(

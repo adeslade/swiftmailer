@@ -309,7 +309,8 @@ class Swift_Mime_Headers_MailboxHeaderTest extends \SwiftMailerTestCase
 
     private function _getHeader($name, $encoder)
     {
-        $header = new Swift_Mime_Headers_MailboxHeader($name, $encoder, new Swift_Mime_Grammar());
+        $emailValidator = new \Egulias\EmailValidator\EmailValidator;
+        $header = new Swift_Mime_Headers_MailboxHeader($name, $encoder, new Swift_Mime_Grammar(), $emailValidator);
         $header->setCharset($this->_charset);
 
         return $header;

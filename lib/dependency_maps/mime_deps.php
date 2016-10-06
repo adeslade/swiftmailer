@@ -49,12 +49,16 @@ Swift_DependencyContainer::getInstance()
     ))
     ->addConstructorValue($swift_mime_types)
 
+    ->register('email.validator')
+    ->asNewInstanceOf('Egulias\EmailValidator\EmailValidator')
+
     ->register('mime.headerfactory')
     ->asNewInstanceOf('Swift_Mime_SimpleHeaderFactory')
     ->withDependencies(array(
             'mime.qpheaderencoder',
             'mime.rfc2231encoder',
             'mime.grammar',
+            'email.validator',
             'properties.charset',
         ))
 
